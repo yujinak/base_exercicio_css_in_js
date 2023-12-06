@@ -1,11 +1,13 @@
 import { FormEvent, useState } from 'react'
 
-import styles from './FormVagas.module.css'
+import { Formulario, Campo } from './styles'
 
+// tipagem
 type Props = {
   aoPesquisar: (termo: string) => void
 }
 
+// define elemento com CSS
 const FormVagas = ({ aoPesquisar }: Props) => {
   const [termo, setTermo] = useState<string>('')
 
@@ -14,18 +16,16 @@ const FormVagas = ({ aoPesquisar }: Props) => {
     aoPesquisar(termo.toLocaleLowerCase())
   }
 
+  // HTML
   return (
-    <form className={styles.form} onSubmit={aoEnviarForm}>
-      <input
-        className={styles.campo}
+    <Formulario onSubmit={aoEnviarForm}>
+      <Campo
         placeholder="Front-end, fullstack, node, design"
         onChange={(e) => setTermo(e.target.value)}
         type="search"
       />
-      <button className={styles.btnPesquisar} type="submit">
-        Pesquisar
-      </button>
-    </form>
+      <button>Pesquisar</button>
+    </Formulario>
   )
 }
 export default FormVagas
